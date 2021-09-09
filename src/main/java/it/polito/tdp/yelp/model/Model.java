@@ -54,4 +54,29 @@ public class Model {
 		return String.format("Grafo creato con %d vertici e %d archi", this.grafo.vertexSet().size(), this.grafo.edgeSet().size());
 	}
 	
+	public Business getLocaleMigliore() {
+	
+		double max = 0.0;
+		Business result = null;
+		
+		for(Business b: grafo.vertexSet()) {
+		
+			double val = 0.0;
+			for(DefaultWeightedEdge e: this.grafo.incomingEdgesOf(b)) { // SOMMO PESO archi entranti		
+				val+=this.grafo.getEdgeWeight(e);
+			}
+			
+			for(DefaultWeightedEdge e: this.grafo.outgoingEdgesOf(b)) { // SOTTRAGGO PESO archi uscenti		
+				val-=this.grafo.getEdgeWeight(e);
+			}
+			
+			if(val>max) {
+				max = val; //salvo nuovo max
+				result = b; //salvo locale migliore
+			}
+		}
+		
+		return result;
+	}
+	
 }

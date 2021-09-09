@@ -9,6 +9,7 @@ import java.time.Month;
 import java.time.Year;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.yelp.model.Business;
 import it.polito.tdp.yelp.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -71,13 +72,16 @@ public class FXMLController {
     	
     	else {
     		String msg = model.creaGrafo(city, anno);
-    		txtResult.appendText(msg);
+    		txtResult.appendText(msg+"\n");
     	}
     }
 
     @FXML
     void doLocaleMigliore(ActionEvent event) {
-
+    	
+    	Business best = model.getLocaleMigliore();
+    	
+    	txtResult.appendText("Locale migliore: "+ best.getBusinessName()+ "\n");
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
