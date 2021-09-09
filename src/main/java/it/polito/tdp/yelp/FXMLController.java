@@ -59,6 +59,20 @@ public class FXMLController {
     @FXML
     void doCreaGrafo(ActionEvent event) {
 
+    	txtResult.clear();
+    	
+    	String city = cmbCitta.getValue();
+    	Year anno = cmbAnno.getValue();
+    	
+    	if(city==null || anno == null) {
+    		txtResult.appendText("INSERIRE PARAMETRI");
+    		return;
+    	}
+    	
+    	else {
+    		String msg = model.creaGrafo(city, anno);
+    		txtResult.appendText(msg);
+    	}
     }
 
     @FXML
